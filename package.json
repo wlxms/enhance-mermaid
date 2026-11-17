@@ -1,0 +1,48 @@
+{
+  "name": "enhance-mermaid",
+  "version": "0.1.0",
+  "description": "把增强 UML 文本变成可交互的代码结构图：解析 mermaid classDiagram + %% ehm 指令，按工作区根目录取真实代码，物化为 EHM IR 并生成自包含 H5；附 `ehm` CLI（render / serve / validate / server）",
+  "type": "module",
+  "bin": {
+    "ehm": "./poc/bin/ehm.mjs"
+  },
+  "exports": {
+    ".": "./poc/src/server.mjs",
+    "./facade": "./poc/src/facade.mjs",
+    "./materialize": "./poc/src/materialize.mjs",
+    "./parse-uml": "./poc/src/parse-uml.mjs",
+    "./to-ir": "./poc/src/to-ir.mjs",
+    "./html": "./poc/src/html.mjs",
+    "./spec/validate": "./spec/validate.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "poc/bin/",
+    "poc/src/",
+    "poc/viewer/",
+    "poc/vendor/",
+    "poc/samples/",
+    "spec/ehm.ir.schema.json",
+    "spec/sample.ir.json",
+    "spec/validate.mjs",
+    "skills/",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "node poc/test/ehm.smoke.mjs",
+    "test:ir": "node spec/validate.mjs spec/sample.ir.json && node spec/validate.mjs --selftest",
+    "test:route": "node poc/tools/route-quality.mjs",
+    "ehm": "node poc/bin/ehm.mjs"
+  },
+  "keywords": [
+    "mermaid",
+    "uml",
+    "code-graph",
+    "cli",
+    "deepseek-harness"
+  ]
+}

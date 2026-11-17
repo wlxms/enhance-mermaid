@@ -1,0 +1,1351 @@
+{
+  "schemaVersion": "1.0.0",
+  "meta": {
+    "locale": "zh-CN",
+    "generatedAt": "2026-11-11T02:35:00+08:00",
+    "generator": {
+      "name": "ehm-analyzer",
+      "version": "0.1.0",
+      "mode": "static"
+    },
+    "workspace": {
+      "root": "deepseek-harness",
+      "vcs": {
+        "kind": "git"
+      }
+    },
+    "capabilities": {
+      "lsp": false,
+      "git": true
+    },
+    "evidenceMode": "inline"
+  },
+  "entities": [
+    {
+      "id": "commandCompact",
+      "kind": "module",
+      "name": "command-compact",
+      "qualifiedName": "command-compact",
+      "scope": "file",
+      "stereotype": "plugin",
+      "summary": "注册 /compact 命令，把用户请求转成一次手动压缩",
+      "size": "M",
+      "entry": true,
+      "location": {
+        "file": "packages/compaction/command-compact/src/index.ts",
+        "line": 11,
+        "column": 14,
+        "basis": "definition",
+        "symbol": "name"
+      },
+      "evidence": {
+        "file": "packages/compaction/command-compact/src/index.ts",
+        "line": 11,
+        "endLine": 12,
+        "code": "export const name = 'command-compact'\nexport const inject = ['commands', 'compaction']"
+      },
+      "fields": [
+        {
+          "name": "name",
+          "type": "string",
+          "visibility": "+",
+          "location": {
+            "file": "packages/compaction/command-compact/src/index.ts",
+            "line": 11,
+            "column": 14,
+            "basis": "definition",
+            "symbol": "name"
+          },
+          "evidence": {
+            "file": "packages/compaction/command-compact/src/index.ts",
+            "line": 11,
+            "endLine": 11,
+            "code": "export const name = 'command-compact'"
+          }
+        },
+        {
+          "name": "inject",
+          "type": "string[]",
+          "visibility": "+",
+          "location": {
+            "file": "packages/compaction/command-compact/src/index.ts",
+            "line": 12,
+            "column": 14,
+            "basis": "definition",
+            "symbol": "inject"
+          },
+          "evidence": {
+            "file": "packages/compaction/command-compact/src/index.ts",
+            "line": 12,
+            "endLine": 12,
+            "code": "export const inject = ['commands', 'compaction']"
+          }
+        }
+      ],
+      "methods": [
+        {
+          "id": "apply",
+          "name": "apply",
+          "visibility": "+",
+          "params": "ctx: Context",
+          "returns": "void",
+          "summary": "插件入口：注册命令并托管进行中的压缩任务",
+          "location": {
+            "file": "packages/compaction/command-compact/src/index.ts",
+            "line": 85,
+            "column": 17,
+            "basis": "definition",
+            "symbol": "apply"
+          },
+          "evidence": {
+            "file": "packages/compaction/command-compact/src/index.ts",
+            "line": 85,
+            "endLine": 86,
+            "code": "export function apply(ctx: Context): void {\n  const active = new Set<Promise<CommandResult>>()"
+          }
+        },
+        {
+          "id": "executeCompact",
+          "name": "executeCompact",
+          "visibility": "-",
+          "params": "ctx, invocation",
+          "returns": "Promise<CommandResult>",
+          "summary": "命令处理：把一次 /compact 调用交给压缩能力",
+          "location": {
+            "file": "packages/compaction/command-compact/src/index.ts",
+            "line": 59,
+            "column": 16,
+            "basis": "definition",
+            "symbol": "executeCompact"
+          },
+          "evidence": {
+            "file": "packages/compaction/command-compact/src/index.ts",
+            "line": 59,
+            "endLine": 61,
+            "code": "async function executeCompact(\n  ctx: Context,\n  invocation: CommandInvocation,"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CompactionEngine",
+      "kind": "class",
+      "name": "CompactionEngine",
+      "qualifiedName": "CompactionEngine",
+      "scope": "symbol",
+      "stereotype": "abstract",
+      "summary": "压缩契约的抽象基类：定义触发策略、保留策略与摘要生成的三个入口",
+      "size": "L",
+      "entry": true,
+      "location": {
+        "file": "packages/compaction/compaction/src/index.ts",
+        "line": 96,
+        "column": 23,
+        "basis": "definition",
+        "symbol": "CompactionEngine"
+      },
+      "evidence": {
+        "file": "packages/compaction/compaction/src/index.ts",
+        "line": 96,
+        "endLine": 97,
+        "code": "export abstract class CompactionEngine extends Service {\n  constructor(ctx: Context) {"
+      },
+      "methods": [
+        {
+          "id": "compactIfNeeded",
+          "name": "compactIfNeeded",
+          "visibility": "+",
+          "abstract": true,
+          "params": "agent, trigger, signal",
+          "returns": "Promise<CompactionResult | null>",
+          "summary": "按压力阈值判断是否需要压缩",
+          "location": {
+            "file": "packages/compaction/compaction/src/index.ts",
+            "line": 113,
+            "column": 12,
+            "basis": "definition",
+            "symbol": "compactIfNeeded"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction/src/index.ts",
+            "line": 113,
+            "endLine": 116,
+            "code": "  abstract compactIfNeeded(\n    agent: CompactionAgentContext,\n    trigger: CompactionTrigger,\n    signal: AbortSignal,"
+          }
+        },
+        {
+          "id": "compactNow",
+          "name": "compactNow",
+          "visibility": "+",
+          "abstract": true,
+          "params": "agent, signal, sourceCommandId?",
+          "returns": "Promise<CompactionResult | null>",
+          "summary": "显式压缩：低于阈值也立即执行一次",
+          "location": {
+            "file": "packages/compaction/compaction/src/index.ts",
+            "line": 139,
+            "column": 12,
+            "basis": "definition",
+            "symbol": "compactNow"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction/src/index.ts",
+            "line": 139,
+            "endLine": 141,
+            "code": "  abstract compactNow(\n    agent: ManualCompactAgentContext,\n    signal: AbortSignal,"
+          }
+        },
+        {
+          "id": "compactRegion",
+          "name": "compactRegion",
+          "visibility": "+",
+          "abstract": true,
+          "params": "start, end, agent, signal?",
+          "returns": "Promise<CompactionResult>",
+          "summary": "压缩指定区间",
+          "location": {
+            "file": "packages/compaction/compaction/src/index.ts",
+            "line": 164,
+            "column": 12,
+            "basis": "definition",
+            "symbol": "compactRegion"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction/src/index.ts",
+            "line": 164,
+            "endLine": 166,
+            "code": "  abstract compactRegion(\n    start: SessionSeq,\n    end: SessionSeq,"
+          }
+        }
+      ]
+    },
+    {
+      "id": "BasicCompactionEngine",
+      "kind": "class",
+      "name": "BasicCompactionEngine",
+      "qualifiedName": "BasicCompactionEngine",
+      "scope": "symbol",
+      "stereotype": "sole-implementation",
+      "summary": "唯一实现：选可压缩区间、调摘要能力、把区间换成一条摘要节点",
+      "size": "L",
+      "location": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 104,
+        "column": 14,
+        "basis": "definition",
+        "symbol": "BasicCompactionEngine"
+      },
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 104,
+        "endLine": 105,
+        "code": "export class BasicCompactionEngine extends CompactionEngine {\n  static inject = ['llm', 'tokenMeter', 'sessions']"
+      },
+      "fields": [
+        {
+          "name": "config",
+          "type": "ResolvedConfig",
+          "visibility": "#",
+          "location": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 121,
+            "column": 12,
+            "basis": "definition",
+            "symbol": "config"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 121,
+            "endLine": 121,
+            "code": "  readonly config: ResolvedConfig"
+          }
+        },
+        {
+          "name": "overflowRetries",
+          "type": "Map<Agent, number>",
+          "visibility": "-",
+          "location": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 124,
+            "column": 20,
+            "basis": "definition",
+            "symbol": "overflowRetries"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 124,
+            "endLine": 124,
+            "code": "  private readonly overflowRetries = new WeakMap<Agent, number>()"
+          }
+        }
+      ],
+      "methods": [
+        {
+          "id": "summarize",
+          "name": "summarize",
+          "visibility": "#",
+          "params": "input, agent, signal?",
+          "returns": "Promise<SummaryResult>",
+          "summary": "定制点：把会话交给摘要能力",
+          "location": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 237,
+            "column": 19,
+            "basis": "definition",
+            "symbol": "summarize"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 237,
+            "endLine": 239,
+            "code": "  protected async summarize(\n    input: SummarizationInput,\n    agent: Agent,"
+          }
+        },
+        {
+          "id": "compactIfNeeded",
+          "name": "compactIfNeeded",
+          "visibility": "+",
+          "params": "agent, trigger, signal",
+          "returns": "Promise<CompactionResult | null>",
+          "summary": "覆写：测压力 → 选区间 → 压缩区间",
+          "location": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 259,
+            "column": 18,
+            "basis": "definition",
+            "symbol": "compactIfNeeded"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 259,
+            "endLine": 261,
+            "code": "  override async compactIfNeeded(\n    agent: Agent,\n    trigger: CompactionTrigger,"
+          }
+        },
+        {
+          "id": "compactRegion",
+          "name": "compactRegion",
+          "visibility": "+",
+          "params": "start, end, agent, signal?",
+          "returns": "Promise<CompactionResult>",
+          "summary": "覆写：直接落到区间压缩",
+          "location": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 344,
+            "column": 18,
+            "basis": "definition",
+            "symbol": "compactRegion"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 344,
+            "endLine": 346,
+            "code": "  override async compactRegion(\n    start: SessionSeq,\n    end: SessionSeq,"
+          }
+        },
+        {
+          "id": "compactNow",
+          "name": "compactNow",
+          "visibility": "+",
+          "params": "agent, signal, sourceCommandId?",
+          "returns": "Promise<CompactionResult | null>",
+          "summary": "覆写：手动压缩，失败保留诊断",
+          "location": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 369,
+            "column": 12,
+            "basis": "definition",
+            "symbol": "compactNow"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 369,
+            "endLine": 371,
+            "code": "  override compactNow(\n    agent: Agent,\n    signal: AbortSignal,"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Service",
+      "kind": "class",
+      "name": "Service",
+      "qualifiedName": "Service",
+      "scope": "external",
+      "stereotype": "framework-base",
+      "summary": "被分析仓库引入的框架基类（工作区外，无定义可跳）；IR 里只是一个普通 class 实体",
+      "size": "S",
+      "location": {
+        "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+        "line": 44,
+        "column": 39,
+        "basis": "usage",
+        "symbol": "Service"
+      },
+      "evidence": {
+        "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+        "line": 44,
+        "endLine": 44,
+        "code": "export class ToolResultPruner extends Service {"
+      }
+    },
+    {
+      "id": "ToolResultPruner",
+      "kind": "class",
+      "name": "ToolResultPruner",
+      "qualifiedName": "ToolResultPruner",
+      "scope": "symbol",
+      "stereotype": "independent-provider",
+      "summary": "压缩前先把过大的工具结果裁短，降低 token 占用",
+      "size": "M",
+      "entry": true,
+      "location": {
+        "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+        "line": 44,
+        "column": 14,
+        "basis": "definition",
+        "symbol": "ToolResultPruner"
+      },
+      "evidence": {
+        "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+        "line": 44,
+        "endLine": 44,
+        "code": "export class ToolResultPruner extends Service {"
+      },
+      "fields": [
+        {
+          "name": "config",
+          "type": "ResolvedConfig",
+          "visibility": "#",
+          "location": {
+            "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+            "line": 56,
+            "column": 12,
+            "basis": "definition",
+            "symbol": "config"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+            "line": 56,
+            "endLine": 56,
+            "code": "  readonly config: ResolvedConfig"
+          }
+        }
+      ],
+      "methods": [
+        {
+          "id": "pruneSession",
+          "name": "pruneSession",
+          "visibility": "+",
+          "params": "session",
+          "returns": "PruneResult",
+          "summary": "对外入口：扫一遍工具结果并替换",
+          "location": {
+            "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+            "line": 136,
+            "column": 3,
+            "basis": "definition",
+            "symbol": "pruneSession"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+            "line": 136,
+            "endLine": 137,
+            "code": "  pruneSession(session: Session): PruneResult {\n    const candidates: SnapshotCandidate[] = []"
+          }
+        },
+        {
+          "id": "pruneContent",
+          "name": "pruneContent",
+          "visibility": "-",
+          "params": "blocks",
+          "returns": "ContentBlock[] | null",
+          "summary": "内部实现：按字符预算掐头去尾",
+          "location": {
+            "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+            "line": 83,
+            "column": 3,
+            "basis": "definition",
+            "symbol": "pruneContent"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+            "line": 83,
+            "endLine": 83,
+            "code": "  pruneContent(blocks: readonly ContentBlock[]): ContentBlock[] | null {"
+          }
+        }
+      ]
+    },
+    {
+      "id": "summarizeWithLlm",
+      "kind": "function",
+      "name": "summarizeWithLlm",
+      "qualifiedName": "summarizeWithLlm",
+      "scope": "symbol",
+      "stereotype": "function",
+      "summary": "把一段会话交给语言模型，产出结构化摘要",
+      "size": "M",
+      "location": {
+        "file": "packages/compaction/compaction-basic/src/summarizer.ts",
+        "line": 119,
+        "column": 23,
+        "basis": "definition",
+        "symbol": "summarizeWithLlm"
+      },
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/summarizer.ts",
+        "line": 119,
+        "endLine": 121,
+        "code": "export async function summarizeWithLlm(\n  ctx: Context,\n  config: SummaryConfig,"
+      },
+      "methods": [
+        {
+          "id": "summarizeWithLlm",
+          "name": "summarizeWithLlm",
+          "visibility": "+",
+          "params": "ctx, config, input, agent, signal?",
+          "returns": "Promise<SummaryResult>",
+          "summary": "函数本体",
+          "location": {
+            "file": "packages/compaction/compaction-basic/src/summarizer.ts",
+            "line": 119,
+            "column": 23,
+            "basis": "definition",
+            "symbol": "summarizeWithLlm"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-basic/src/summarizer.ts",
+            "line": 119,
+            "endLine": 121,
+            "code": "export async function summarizeWithLlm(\n  ctx: Context,\n  config: SummaryConfig,"
+          }
+        }
+      ]
+    },
+    {
+      "id": "selectCompactableRange",
+      "kind": "function",
+      "name": "selectCompactableRange",
+      "qualifiedName": "selectCompactableRange",
+      "scope": "symbol",
+      "stereotype": "function",
+      "summary": "挑出可安全压缩的会话区间，避免切断工具调用配对",
+      "size": "M",
+      "location": {
+        "file": "packages/compaction/compaction-basic/src/region.ts",
+        "line": 117,
+        "column": 17,
+        "basis": "definition",
+        "symbol": "selectCompactableRange"
+      },
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/region.ts",
+        "line": 117,
+        "endLine": 119,
+        "code": "export function selectCompactableRange(\n  session: Session,\n  measurement: TokenMeasurement,"
+      },
+      "methods": [
+        {
+          "id": "selectCompactableRange",
+          "name": "selectCompactableRange",
+          "visibility": "+",
+          "params": "session, measurement, retainTokens",
+          "returns": "{ start, end } | null",
+          "summary": "函数本体",
+          "location": {
+            "file": "packages/compaction/compaction-basic/src/region.ts",
+            "line": 117,
+            "column": 17,
+            "basis": "definition",
+            "symbol": "selectCompactableRange"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-basic/src/region.ts",
+            "line": 117,
+            "endLine": 119,
+            "code": "export function selectCompactableRange(\n  session: Session,\n  measurement: TokenMeasurement,"
+          }
+        }
+      ]
+    },
+    {
+      "id": "compactSurfaceRegion",
+      "kind": "function",
+      "name": "compactSurfaceRegion",
+      "qualifiedName": "compactSurfaceRegion",
+      "scope": "symbol",
+      "stereotype": "function",
+      "summary": "把指定区间原地替换成一条摘要节点",
+      "size": "M",
+      "location": {
+        "file": "packages/compaction/compaction-basic/src/region.ts",
+        "line": 173,
+        "column": 23,
+        "basis": "definition",
+        "symbol": "compactSurfaceRegion"
+      },
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/region.ts",
+        "line": 173,
+        "endLine": 175,
+        "code": "export async function compactSurfaceRegion(\n  dependencies: RegionDependencies,\n  session: Session,"
+      },
+      "methods": [
+        {
+          "id": "compactSurfaceRegion",
+          "name": "compactSurfaceRegion",
+          "visibility": "+",
+          "params": "dependencies, session, start, end, agent, options",
+          "returns": "Promise<CompactionResult>",
+          "summary": "函数本体",
+          "location": {
+            "file": "packages/compaction/compaction-basic/src/region.ts",
+            "line": 173,
+            "column": 23,
+            "basis": "definition",
+            "symbol": "compactSurfaceRegion"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-basic/src/region.ts",
+            "line": 173,
+            "endLine": 175,
+            "code": "export async function compactSurfaceRegion(\n  dependencies: RegionDependencies,\n  session: Session,"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tokenMeter",
+      "kind": "capability",
+      "name": "tokenMeter",
+      "qualifiedName": "Context.tokenMeter",
+      "scope": "external",
+      "stereotype": "capability",
+      "summary": "统计消息的 token 占用，驱动压力判断（由运行环境注入，工作区内无定义）",
+      "size": "S",
+      "location": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 267,
+        "column": 28,
+        "basis": "usage",
+        "symbol": "tokenMeter"
+      },
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 267,
+        "endLine": 267,
+        "code": "    const meter = this.ctx.tokenMeter"
+      },
+      "methods": [
+        {
+          "id": "measure",
+          "name": "measure",
+          "visibility": "+",
+          "params": "session",
+          "returns": "TokenMeasurement",
+          "summary": "用量快照",
+          "location": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 268,
+            "column": 9,
+            "basis": "usage",
+            "symbol": "measure"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 268,
+            "endLine": 268,
+            "code": "    let measurement = meter.measure(agent.session)"
+          }
+        },
+        {
+          "id": "estimateMessage",
+          "name": "estimateMessage",
+          "visibility": "+",
+          "params": "message",
+          "returns": "number",
+          "summary": "单条消息的 token 估算",
+          "location": {
+            "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+            "line": 166,
+            "column": 49,
+            "basis": "usage",
+            "symbol": "estimateMessage"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+            "line": 166,
+            "endLine": 166,
+            "code": "        shadowedTokenCount: this.ctx.tokenMeter.estimateMessage(event.data.message),"
+          }
+        }
+      ]
+    },
+    {
+      "id": "llm",
+      "kind": "capability",
+      "name": "llm",
+      "qualifiedName": "Context.llm",
+      "scope": "external",
+      "stereotype": "capability",
+      "summary": "解析模型能力与上下文窗口（由运行环境注入）",
+      "size": "S",
+      "location": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 294,
+        "column": 37,
+        "basis": "usage",
+        "symbol": "llm"
+      },
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 294,
+        "endLine": 294,
+        "code": "    const context = (await this.ctx.llm.resolveModelInfo(target.provider, target.model, signal)).context"
+      },
+      "methods": [
+        {
+          "id": "resolveModelInfo",
+          "name": "resolveModelInfo",
+          "visibility": "+",
+          "params": "provider, model, signal",
+          "returns": "Promise<ModelInfo>",
+          "summary": "模型窗口信息",
+          "location": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 294,
+            "column": 41,
+            "basis": "usage",
+            "symbol": "resolveModelInfo"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 294,
+            "endLine": 294,
+            "code": "    const context = (await this.ctx.llm.resolveModelInfo(target.provider, target.model, signal)).context"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sessions",
+      "kind": "capability",
+      "name": "sessions",
+      "qualifiedName": "Context.sessions",
+      "scope": "external",
+      "stereotype": "capability",
+      "summary": "读写会话消息、追加压缩标记（由运行环境注入）",
+      "size": "S",
+      "location": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 397,
+        "column": 32,
+        "basis": "usage",
+        "symbol": "sessions"
+      },
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 397,
+        "endLine": 397,
+        "code": "                await this.ctx.sessions.flush(agent.session)"
+      },
+      "methods": [
+        {
+          "id": "flush",
+          "name": "flush",
+          "visibility": "+",
+          "params": "session",
+          "returns": "Promise<void>",
+          "summary": "压缩后落盘",
+          "location": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 397,
+            "column": 41,
+            "basis": "usage",
+            "symbol": "flush"
+          },
+          "evidence": {
+            "file": "packages/compaction/compaction-basic/src/index.ts",
+            "line": 397,
+            "endLine": 397,
+            "code": "                await this.ctx.sessions.flush(agent.session)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "commands",
+      "kind": "capability",
+      "name": "commands",
+      "qualifiedName": "Context.commands",
+      "scope": "external",
+      "stereotype": "capability",
+      "summary": "命令注册表（由运行环境注入）",
+      "size": "S",
+      "location": {
+        "file": "packages/compaction/command-compact/src/index.ts",
+        "line": 101,
+        "column": 15,
+        "basis": "usage",
+        "symbol": "commands"
+      },
+      "evidence": {
+        "file": "packages/compaction/command-compact/src/index.ts",
+        "line": 101,
+        "endLine": 101,
+        "code": "    yield ctx.commands.register({"
+      },
+      "methods": [
+        {
+          "id": "register",
+          "name": "register",
+          "visibility": "+",
+          "params": "definition",
+          "returns": "Disposer",
+          "summary": "挂上一个斜杠命令",
+          "location": {
+            "file": "packages/compaction/command-compact/src/index.ts",
+            "line": 101,
+            "column": 24,
+            "basis": "usage",
+            "symbol": "register"
+          },
+          "evidence": {
+            "file": "packages/compaction/command-compact/src/index.ts",
+            "line": 101,
+            "endLine": 101,
+            "code": "    yield ctx.commands.register({"
+          }
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "id": "extends.BasicCompactionEngine",
+      "kind": "extends",
+      "from": {
+        "entity": "BasicCompactionEngine"
+      },
+      "to": {
+        "entity": "CompactionEngine"
+      },
+      "label": "实现压缩契约",
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 104,
+        "endLine": 104,
+        "code": "export class BasicCompactionEngine extends CompactionEngine {"
+      },
+      "provenance": "ast",
+      "confidence": 1
+    },
+    {
+      "id": "extends.ToolResultPruner",
+      "kind": "extends",
+      "from": {
+        "entity": "ToolResultPruner"
+      },
+      "to": {
+        "entity": "Service"
+      },
+      "label": "继承框架基类（不是压缩契约）",
+      "evidence": {
+        "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+        "line": 44,
+        "endLine": 44,
+        "code": "export class ToolResultPruner extends Service {"
+      },
+      "provenance": "ast",
+      "confidence": 1,
+      "external": true
+    },
+    {
+      "id": "call.executeCompact.compactNow",
+      "kind": "calls",
+      "from": {
+        "entity": "commandCompact",
+        "member": "executeCompact"
+      },
+      "to": {
+        "entity": "CompactionEngine",
+        "member": "compactNow"
+      },
+      "label": "触发手动压缩",
+      "evidence": {
+        "file": "packages/compaction/command-compact/src/index.ts",
+        "line": 67,
+        "endLine": 67,
+        "code": "    const result = await ctx.compaction.compactNow(invocation.agent, invocation.signal, invocation.commandId)"
+      },
+      "provenance": "ast",
+      "confidence": 0.9,
+      "sites": [
+        {
+          "file": "packages/compaction/command-compact/src/index.ts",
+          "line": 67,
+          "column": 41,
+          "code": "const result = await ctx.compaction.compactNow(invocation.agent, invocation.signal, invocation.commandId)",
+          "form": "method"
+        }
+      ]
+    },
+    {
+      "id": "call.apply.register",
+      "kind": "calls",
+      "from": {
+        "entity": "commandCompact",
+        "member": "apply"
+      },
+      "to": {
+        "entity": "commands",
+        "member": "register"
+      },
+      "label": "注册斜杠命令",
+      "evidence": {
+        "file": "packages/compaction/command-compact/src/index.ts",
+        "line": 101,
+        "endLine": 101,
+        "code": "    yield ctx.commands.register({"
+      },
+      "provenance": "ast",
+      "confidence": 0.95,
+      "sites": [
+        {
+          "file": "packages/compaction/command-compact/src/index.ts",
+          "line": 101,
+          "column": 24,
+          "code": "yield ctx.commands.register({",
+          "form": "method"
+        }
+      ]
+    },
+    {
+      "id": "call.summarize.summarizeWithLlm",
+      "kind": "calls",
+      "from": {
+        "entity": "BasicCompactionEngine",
+        "member": "summarize"
+      },
+      "to": {
+        "entity": "summarizeWithLlm",
+        "member": "summarizeWithLlm"
+      },
+      "label": "生成摘要",
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 246,
+        "endLine": 246,
+        "code": "    return summarizeWithLlm(this.ctx, config, input, agent, signal)"
+      },
+      "provenance": "ast",
+      "confidence": 0.98,
+      "sites": [
+        {
+          "file": "packages/compaction/compaction-basic/src/index.ts",
+          "line": 246,
+          "column": 12,
+          "code": "return summarizeWithLlm(this.ctx, config, input, agent, signal)",
+          "form": "direct"
+        }
+      ]
+    },
+    {
+      "id": "call.compactIfNeeded.selectCompactableRange",
+      "kind": "calls",
+      "from": {
+        "entity": "BasicCompactionEngine",
+        "member": "compactIfNeeded"
+      },
+      "to": {
+        "entity": "selectCompactableRange",
+        "member": "selectCompactableRange"
+      },
+      "label": "挑选可压缩区间",
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 289,
+        "endLine": 289,
+        "code": "      const range = selectCompactableRange(agent.session, measurement, 0)"
+      },
+      "provenance": "ast",
+      "confidence": 0.98,
+      "sites": [
+        {
+          "file": "packages/compaction/compaction-basic/src/index.ts",
+          "line": 289,
+          "column": 21,
+          "code": "const range = selectCompactableRange(agent.session, measurement, 0)",
+          "form": "direct"
+        },
+        {
+          "file": "packages/compaction/compaction-basic/src/index.ts",
+          "line": 317,
+          "column": 21,
+          "code": "const range = selectCompactableRange(agent.session, measurement, spec.retainTokens)",
+          "form": "direct"
+        }
+      ]
+    },
+    {
+      "id": "call.compactIfNeeded.tokenMeter.measure",
+      "kind": "calls",
+      "from": {
+        "entity": "BasicCompactionEngine",
+        "member": "compactIfNeeded"
+      },
+      "to": {
+        "entity": "tokenMeter",
+        "member": "measure"
+      },
+      "label": "估算 token 压力",
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 268,
+        "endLine": 268,
+        "code": "    let measurement = meter.measure(agent.session)"
+      },
+      "provenance": "ast",
+      "confidence": 0.92,
+      "sites": [
+        {
+          "file": "packages/compaction/compaction-basic/src/index.ts",
+          "line": 268,
+          "column": 9,
+          "code": "let measurement = meter.measure(agent.session)",
+          "form": "method"
+        }
+      ]
+    },
+    {
+      "id": "call.compactIfNeeded.llm.resolveModelInfo",
+      "kind": "calls",
+      "from": {
+        "entity": "BasicCompactionEngine",
+        "member": "compactIfNeeded"
+      },
+      "to": {
+        "entity": "llm",
+        "member": "resolveModelInfo"
+      },
+      "label": "确认模型窗口",
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 294,
+        "endLine": 294,
+        "code": "    const context = (await this.ctx.llm.resolveModelInfo(target.provider, target.model, signal)).context"
+      },
+      "provenance": "ast",
+      "confidence": 0.85,
+      "sites": [
+        {
+          "file": "packages/compaction/compaction-basic/src/index.ts",
+          "line": 294,
+          "column": 41,
+          "code": "const context = (await this.ctx.llm.resolveModelInfo(target.provider, target.model, signal)).context",
+          "form": "method"
+        }
+      ]
+    },
+    {
+      "id": "call.compactRegion.compactSurfaceRegion",
+      "kind": "calls",
+      "from": {
+        "entity": "BasicCompactionEngine",
+        "member": "compactRegion"
+      },
+      "to": {
+        "entity": "compactSurfaceRegion",
+        "member": "compactSurfaceRegion"
+      },
+      "label": "替换区间为摘要",
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 350,
+        "endLine": 350,
+        "code": "    return compactSurfaceRegion("
+      },
+      "provenance": "ast",
+      "confidence": 0.98,
+      "sites": [
+        {
+          "file": "packages/compaction/compaction-basic/src/index.ts",
+          "line": 350,
+          "column": 12,
+          "code": "return compactSurfaceRegion(",
+          "form": "direct"
+        }
+      ]
+    },
+    {
+      "id": "call.compactNow.selectCompactableRange",
+      "kind": "calls",
+      "from": {
+        "entity": "BasicCompactionEngine",
+        "member": "compactNow"
+      },
+      "to": {
+        "entity": "selectCompactableRange",
+        "member": "selectCompactableRange"
+      },
+      "label": "挑选可压缩区间",
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 380,
+        "endLine": 380,
+        "code": "          const range = selectCompactableRange("
+      },
+      "provenance": "ast",
+      "confidence": 0.98,
+      "sites": [
+        {
+          "file": "packages/compaction/compaction-basic/src/index.ts",
+          "line": 380,
+          "column": 25,
+          "code": "const range = selectCompactableRange(",
+          "form": "direct"
+        }
+      ]
+    },
+    {
+      "id": "call.compactNow.compactSurfaceRegion",
+      "kind": "calls",
+      "from": {
+        "entity": "BasicCompactionEngine",
+        "member": "compactNow"
+      },
+      "to": {
+        "entity": "compactSurfaceRegion",
+        "member": "compactSurfaceRegion"
+      },
+      "label": "替换区间为摘要",
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 386,
+        "endLine": 386,
+        "code": "          return await compactSurfaceRegion("
+      },
+      "provenance": "ast",
+      "confidence": 0.98,
+      "sites": [
+        {
+          "file": "packages/compaction/compaction-basic/src/index.ts",
+          "line": 386,
+          "column": 24,
+          "code": "return await compactSurfaceRegion(",
+          "form": "direct"
+        }
+      ]
+    },
+    {
+      "id": "call.compactNow.sessions.flush",
+      "kind": "calls",
+      "from": {
+        "entity": "BasicCompactionEngine",
+        "member": "compactNow"
+      },
+      "to": {
+        "entity": "sessions",
+        "member": "flush"
+      },
+      "label": "压缩后落盘",
+      "evidence": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 397,
+        "endLine": 397,
+        "code": "                await this.ctx.sessions.flush(agent.session)"
+      },
+      "provenance": "ast",
+      "confidence": 0.93,
+      "sites": [
+        {
+          "file": "packages/compaction/compaction-basic/src/index.ts",
+          "line": 397,
+          "column": 41,
+          "code": "await this.ctx.sessions.flush(agent.session)",
+          "form": "method"
+        }
+      ]
+    },
+    {
+      "id": "call.pruneSession.tokenMeter.estimateMessage",
+      "kind": "calls",
+      "from": {
+        "entity": "ToolResultPruner",
+        "member": "pruneSession"
+      },
+      "to": {
+        "entity": "tokenMeter",
+        "member": "estimateMessage"
+      },
+      "label": "估算被裁掉内容的 token",
+      "evidence": {
+        "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+        "line": 166,
+        "endLine": 166,
+        "code": "        shadowedTokenCount: this.ctx.tokenMeter.estimateMessage(event.data.message),"
+      },
+      "provenance": "ast",
+      "confidence": 0.9,
+      "sites": [
+        {
+          "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+          "line": 166,
+          "column": 49,
+          "code": "shadowedTokenCount: this.ctx.tokenMeter.estimateMessage(event.data.message),",
+          "form": "method"
+        }
+      ]
+    }
+  ],
+  "views": [
+    {
+      "id": "view.uml.calls",
+      "type": "uml",
+      "title": "调用面：命令如何走到压缩实现",
+      "facet": "calls",
+      "edge": {
+        "kind": "calls",
+        "direction": "forward"
+      },
+      "query": {
+        "filter": {
+          "entityKinds": [
+            "module",
+            "class",
+            "function",
+            "capability"
+          ]
+        }
+      },
+      "fold": {
+        "maxNodes": 60,
+        "maxEdges": 120,
+        "mechanism": "aggregate",
+        "aggregationOrder": [
+          "degree",
+          "directory",
+          "depth"
+        ],
+        "aggregateLabel": "+{n} more"
+      },
+      "layoutFamily": "uml",
+      "foldResult": {
+        "nodes": 11,
+        "edges": 9,
+        "collapsed": 0,
+        "hitBudget": false
+      }
+    },
+    {
+      "id": "view.uml.types",
+      "type": "uml",
+      "title": "类型面：继承与实现",
+      "facet": "types",
+      "edge": {
+        "kind": "extends",
+        "direction": "forward"
+      },
+      "query": {},
+      "fold": {
+        "maxNodes": 60,
+        "maxEdges": 120,
+        "mechanism": "aggregate",
+        "aggregationOrder": [
+          "degree"
+        ],
+        "aggregateLabel": "+{n} more"
+      },
+      "layoutFamily": "uml",
+      "foldResult": {
+        "nodes": 4,
+        "edges": 2,
+        "collapsed": 0,
+        "hitBudget": false
+      }
+    },
+    {
+      "id": "view.flow.compactNow",
+      "type": "flow",
+      "title": "Flow：手动压缩的执行路径",
+      "edge": {
+        "kind": "calls",
+        "direction": "forward"
+      },
+      "query": {
+        "root": {
+          "entity": "BasicCompactionEngine",
+          "member": "compactNow"
+        },
+        "depth": 3
+      },
+      "fold": {
+        "maxNodes": 60,
+        "maxEdges": 120,
+        "mechanism": "aggregate",
+        "aggregationOrder": [
+          "depth",
+          "degree"
+        ],
+        "aggregateLabel": "+{n} more"
+      },
+      "layoutFamily": "layered",
+      "foldResult": {
+        "nodes": 4,
+        "edges": 3,
+        "collapsed": 0,
+        "hitBudget": false
+      }
+    },
+    {
+      "id": "view.impact.compactNow",
+      "type": "impact",
+      "title": "Impact：改压缩入口会牵连谁",
+      "edge": {
+        "kind": "calls",
+        "direction": "reverse"
+      },
+      "query": {
+        "root": {
+          "entity": "CompactionEngine",
+          "member": "compactNow"
+        },
+        "depth": 2
+      },
+      "fold": {
+        "maxNodes": 60,
+        "maxEdges": 120,
+        "mechanism": "aggregate",
+        "aggregationOrder": [
+          "depth",
+          "degree"
+        ],
+        "aggregateLabel": "+{n} more"
+      },
+      "layoutFamily": "layered",
+      "foldResult": {
+        "nodes": 2,
+        "edges": 1,
+        "collapsed": 0,
+        "hitBudget": false
+      }
+    }
+  ],
+  "diagnostics": [
+    {
+      "severity": "info",
+      "code": "dynamic-dispatch",
+      "message": "BasicCompactionEngine.compactNow 覆写 CompactionEngine.compactNow；调用点经基类派发，calls 边落在基类上，派生实现不重复建边（§5.4 精度声明）。",
+      "file": "packages/compaction/command-compact/src/index.ts",
+      "line": 67
+    },
+    {
+      "severity": "warn",
+      "code": "external-symbol",
+      "message": "Service 在工作区外（框架包），只有使用处位置；跳转只能落到使用处或复制位置。",
+      "file": "packages/compaction/compaction-tool-result-pruner/src/index.ts",
+      "line": 44
+    }
+  ]
+}

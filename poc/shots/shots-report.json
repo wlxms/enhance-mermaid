@@ -1,0 +1,589 @@
+{
+  "shots": [
+    "poc/shots/01-overview-dark.png",
+    "poc/shots/02-hover-entity-bubble.png",
+    "poc/shots/04-bubble-locked.png",
+    "poc/shots/05-hover-wire-bubble.png",
+    "poc/shots/06-theme-menu.png",
+    "poc/shots/06-overview-light.png",
+    "poc/shots/09-theme-graphite.png",
+    "poc/shots/09-theme-carbon.png",
+    "poc/shots/09-theme-editorial.png",
+    "poc/shots/07-methods-collapsed.png",
+    "poc/shots/08-zoom-detail.png"
+  ],
+  "geometry": {
+    "scene": {
+      "width": 2545,
+      "height": 715
+    },
+    "cards": 12,
+    "segments": 59,
+    "labels": 11,
+    "viewK": 0.693,
+    "fanoutPack": {
+      "applied": true,
+      "bandNodes": 9,
+      "groups": 3,
+      "rows": 4,
+      "oldWidth": 3787,
+      "oldHeight": 543,
+      "width": 2545,
+      "height": 715
+    },
+    "cardOverlaps": 0,
+    "diagonalSegments": 0,
+    "wireOnCard": 0,
+    "wireOnAnyCard": 0,
+    "sharedStarts": 0,
+    "sharedEnds": 0,
+    "wireProximities": 0,
+    "wireCrossings": 0,
+    "wireOverlaps": 0,
+    "wireTouches": 0,
+    "wireEndpointBad": 0,
+    "wireEndpointsChecked": 13,
+    "methodPortsChecked": 0,
+    "labelOnCard": 0,
+    "labelOnWire": 0,
+    "labelOutOfBounds": 0,
+    "textOverflow": 0,
+    "heightDrift": 0,
+    "rowPitchDeviation": 0
+  },
+  "bubbleThresholds": {
+    "bubbleRectDistMax": 80
+  },
+  "entityBubble": {
+    "shown": true,
+    "bubble": {
+      "left": 901,
+      "top": 439,
+      "w": 512,
+      "h": 76
+    },
+    "owner": {
+      "left": 734,
+      "top": 523,
+      "right": 1032,
+      "bottom": 559
+    },
+    "mouse": {
+      "x": 883,
+      "y": 533
+    },
+    "ownerOverlap": false,
+    "mouseInsideBubble": false,
+    "bubbleRectDist": 25.722375959463776,
+    "cardsOverlapped": [],
+    "inViewport": true,
+    "compressed": false,
+    "scrollH": 47,
+    "clientH": 47,
+    "maxHeight": "76px",
+    "placement": {
+      "left": 901,
+      "top": 439,
+      "width": 512,
+      "height": 76,
+      "maxHeight": 76,
+      "tag": "mouse-tr",
+      "ownerOverlap": 0,
+      "cardOverlap": 0,
+      "mouseDist": 25.45584412271571,
+      "hadFreeCandidate": true
+    },
+    "codeLines": 2,
+    "hotWires": 0,
+    "hotLabels": 0,
+    "title": "BasicCompactionEngine"
+  },
+  "altBubble": {
+    "before": {
+      "shown": true,
+      "locked": false
+    },
+    "after": {
+      "shown": false,
+      "locked": false
+    },
+    "heldHover": {
+      "shown": false,
+      "locked": false
+    },
+    "releasedHover": {
+      "shown": true,
+      "locked": false
+    },
+    "heldWire": {
+      "shown": false,
+      "locked": false
+    },
+    "releasedWire": {
+      "shown": true,
+      "locked": false
+    },
+    "hidden": true,
+    "heldSuppressed": true,
+    "releasedRestored": true,
+    "wireHeldSuppressed": true,
+    "wireReleasedRestored": true
+  },
+  "methodBubble": {
+    "shown": true,
+    "bubble": {
+      "left": 610,
+      "top": 332,
+      "w": 547,
+      "h": 246
+    },
+    "owner": {
+      "left": 734,
+      "top": 596,
+      "right": 1032,
+      "bottom": 611
+    },
+    "mouse": {
+      "x": 883,
+      "y": 603
+    },
+    "ownerOverlap": false,
+    "mouseInsideBubble": false,
+    "bubbleRectDist": 25,
+    "cardsOverlapped": [
+      "BasicCompactionEngine"
+    ],
+    "inViewport": true,
+    "compressed": false,
+    "scrollH": 202,
+    "clientH": 202,
+    "maxHeight": "246px",
+    "placement": {
+      "left": 609.5,
+      "top": 332.039306640625,
+      "width": 547,
+      "height": 246,
+      "maxHeight": 246,
+      "tag": "owner-above",
+      "ownerOverlap": 0,
+      "cardOverlap": 16571.241804003716,
+      "mouseDist": 24.960693359375,
+      "hadFreeCandidate": true
+    },
+    "codeLines": 11,
+    "hotWires": 0,
+    "hotLabels": 0,
+    "title": "# summarize(input, agent, signal) Promise~SummaryResult~"
+  },
+  "methodFollow": {
+    "shown": true,
+    "bubble": {
+      "left": 650,
+      "top": 332,
+      "w": 547,
+      "h": 246
+    },
+    "owner": {
+      "left": 734,
+      "top": 596,
+      "right": 1032,
+      "bottom": 611
+    },
+    "mouse": {
+      "x": 923,
+      "y": 603
+    },
+    "ownerOverlap": false,
+    "mouseInsideBubble": false,
+    "bubbleRectDist": 25,
+    "cardsOverlapped": [
+      "BasicCompactionEngine"
+    ],
+    "inViewport": true,
+    "compressed": false,
+    "scrollH": 202,
+    "clientH": 202,
+    "maxHeight": "246px",
+    "placement": {
+      "left": 649.5,
+      "top": 332.039306640625,
+      "width": 547,
+      "height": 246,
+      "maxHeight": 246,
+      "tag": "owner-above",
+      "ownerOverlap": 0,
+      "cardOverlap": 16571.241804003716,
+      "mouseDist": 24.960693359375,
+      "hadFreeCandidate": true
+    },
+    "codeLines": 11,
+    "hotWires": 0,
+    "hotLabels": 0,
+    "title": "# summarize(input, agent, signal) Promise~SummaryResult~",
+    "followed": true
+  },
+  "wireBubble": {
+    "shown": true,
+    "bubble": {
+      "left": 1147,
+      "top": 959,
+      "w": 645,
+      "h": 93
+    },
+    "owner": {
+      "left": 1328,
+      "top": 934,
+      "right": 1342,
+      "bottom": 948
+    },
+    "mouse": {
+      "x": 1335,
+      "y": 941
+    },
+    "ownerOverlap": false,
+    "mouseInsideBubble": false,
+    "bubbleRectDist": 18,
+    "cardsOverlapped": [],
+    "inViewport": true,
+    "compressed": false,
+    "scrollH": 64,
+    "clientH": 64,
+    "maxHeight": "93px",
+    "placement": {
+      "left": 1147,
+      "top": 959,
+      "width": 645,
+      "height": 93,
+      "maxHeight": 93,
+      "tag": "mouse-br",
+      "ownerOverlap": 0,
+      "cardOverlap": 0,
+      "mouseDist": 18,
+      "hadFreeCandidate": true
+    },
+    "codeLines": 3,
+    "hotWires": 1,
+    "hotLabels": 1,
+    "title": "估算被裁内容的 token"
+  },
+  "bubble": {
+    "shown": true,
+    "bubble": {
+      "left": 901,
+      "top": 439,
+      "w": 512,
+      "h": 76
+    },
+    "owner": {
+      "left": 734,
+      "top": 523,
+      "right": 1032,
+      "bottom": 559
+    },
+    "mouse": {
+      "x": 883,
+      "y": 533
+    },
+    "ownerOverlap": false,
+    "mouseInsideBubble": false,
+    "bubbleRectDist": 25.722375959463776,
+    "cardsOverlapped": [],
+    "inViewport": true,
+    "compressed": false,
+    "scrollH": 47,
+    "clientH": 47,
+    "maxHeight": "76px",
+    "placement": {
+      "left": 901,
+      "top": 439,
+      "width": 512,
+      "height": 76,
+      "maxHeight": 76,
+      "tag": "mouse-tr",
+      "ownerOverlap": 0,
+      "cardOverlap": 0,
+      "mouseDist": 25.45584412271571,
+      "hadFreeCandidate": true
+    },
+    "codeLines": 2,
+    "hotWires": 0,
+    "hotLabels": 0,
+    "title": "BasicCompactionEngine"
+  },
+  "lockedBubble": {
+    "shown": true,
+    "bubble": {
+      "left": 610,
+      "top": 332,
+      "w": 547,
+      "h": 246
+    },
+    "owner": {
+      "left": 734,
+      "top": 596,
+      "right": 1032,
+      "bottom": 611
+    },
+    "mouse": {
+      "x": 883,
+      "y": 603
+    },
+    "ownerOverlap": false,
+    "mouseInsideBubble": false,
+    "bubbleRectDist": 25,
+    "cardsOverlapped": [
+      "BasicCompactionEngine"
+    ],
+    "inViewport": true,
+    "compressed": false,
+    "scrollH": 202,
+    "clientH": 202,
+    "maxHeight": "246px",
+    "placement": {
+      "left": 609.5,
+      "top": 332.039306640625,
+      "width": 547,
+      "height": 246,
+      "maxHeight": 246,
+      "tag": "owner-above",
+      "ownerOverlap": 0,
+      "cardOverlap": 16571.241804003716,
+      "mouseDist": 24.960693359375,
+      "hadFreeCandidate": true
+    },
+    "codeLines": 11,
+    "hotWires": 0,
+    "hotLabels": 0,
+    "title": "# summarize(input, agent, signal) Promise~SummaryResult~",
+    "locked": true,
+    "rowSelected": true,
+    "cardSelected": false,
+    "canScroll": true,
+    "outsideDeselect": {
+      "shown": false,
+      "selected": 0
+    }
+  },
+  "outsideClickClosed": true,
+  "lightThemeOk": true,
+  "themeMenu": {
+    "open": true,
+    "count": 5,
+    "options": [
+      "dsh-dark",
+      "dsh-light",
+      "graphite",
+      "editorial",
+      "carbon"
+    ],
+    "current": "dsh-dark"
+  },
+  "themeMenuClosed": true,
+  "skinChecks": {
+    "graphite": {
+      "skin": "graphite",
+      "attr": "graphite",
+      "theme": "dark"
+    },
+    "carbon": {
+      "skin": "carbon",
+      "attr": "carbon",
+      "theme": "dark"
+    },
+    "editorial": {
+      "skin": "editorial",
+      "attr": "editorial",
+      "theme": "light"
+    }
+  },
+  "panCheck": {
+    "before": {
+      "x": 18,
+      "y": 379
+    },
+    "after": {
+      "x": 88,
+      "y": 429
+    },
+    "moved": true
+  },
+  "zoomCheck": {
+    "before": 0.693,
+    "after": 1.116,
+    "zoomed": true
+  },
+  "sidePanel": {
+    "hasSidebar": true,
+    "hasCollapse": false,
+    "text": "在侧栏打开"
+  },
+  "doubleClickBlank": {
+    "before": {
+      "x": 18,
+      "y": 379
+    },
+    "after": {
+      "x": 18,
+      "y": 379
+    },
+    "unchanged": true
+  },
+  "relationMethodTarget": {
+    "rel": "rel.commandCompact.CompactionEngine",
+    "target": {
+      "file": "packages/compaction/command-compact/src/index.ts",
+      "line": 59,
+      "column": 1,
+      "symbol": "commandCompact.executeCompact",
+      "edgeId": null,
+      "kind": "method",
+      "entityId": "commandCompact",
+      "memberId": "commandCompact.executeCompact"
+    }
+  },
+  "postPanSelect": {
+    "locked": true,
+    "selected": 1
+  },
+  "longBubble": {
+    "row": "BasicCompactionEngine#methods#3",
+    "bubble": {
+      "left": 558,
+      "top": 672,
+      "right": 1209,
+      "bottom": 1092
+    },
+    "scrollH": 930,
+    "clientH": 376,
+    "title": "+ compactNow(agent, signal, sourceCommandId) Promise~CompactionResult~",
+    "hover": {
+      "scrollTopBefore": 0,
+      "scrollTopAfter": 0,
+      "kBefore": 0.693,
+      "kAfter": 0.693,
+      "stillHover": true
+    },
+    "locked": {
+      "scrollTopBefore": 0,
+      "scrollTopAfter": 240,
+      "kBefore": 0.693,
+      "kAfter": 0.693
+    },
+    "hiddenAfterOutside": true
+  },
+  "standaloneJump": {
+    "b1": {
+      "standalone": true,
+      "intent": {
+        "file": "packages/compaction/compaction-basic/src/index.ts",
+        "line": 104,
+        "column": 1,
+        "symbol": "BasicCompactionEngine",
+        "edgeId": null,
+        "kind": "entity",
+        "entityId": "BasicCompactionEngine"
+      },
+      "toast": {
+        "shown": true,
+        "opacity": "1",
+        "text": "已复制 packages/compaction/compaction-basic/src/index.ts:104:1"
+      }
+    },
+    "b2": {
+      "intent": {
+        "file": "packages/compaction/compaction/src/index.ts",
+        "line": 96,
+        "column": 1,
+        "symbol": "CompactionEngine",
+        "edgeId": null,
+        "kind": "entity",
+        "entityId": "CompactionEngine"
+      },
+      "toast": {
+        "shown": true,
+        "opacity": "1",
+        "text": "已交给 DSH 面板处理"
+      },
+      "fetches": [
+        "/ehm/jump-relay/abc"
+      ],
+      "body": "{\"file\":\"packages/compaction/compaction/src/index.ts\",\"line\":96,\"column\":1,\"symbol\":\"CompactionEngine\",\"edgeId\":null,\"kind\":\"entity\",\"entityId\":\"CompactionEngine\"}"
+    }
+  },
+  "memberSummary": {
+    "injected": {
+      "withSummary": {
+        "name": "summarize",
+        "summary": "【P13 测试】把会话交给语言模型生成结构化摘要（方法含义）",
+        "visibility": "#"
+      },
+      "without": {
+        "name": "compactNow",
+        "summary": "",
+        "visibility": "+"
+      }
+    },
+    "withSummary": {
+      "shown": true,
+      "title": "# summarize(input, agent, signal) Promise~SummaryResult~",
+      "summary": "【P13 测试】把会话交给语言模型生成结构化摘要（方法含义）",
+      "headRows": 1,
+      "h": 246
+    },
+    "noSummary": {
+      "shown": true,
+      "summaryCount": 0,
+      "title": "+ compactNow(agent, signal, sourceCommandId) Promise~CompactionResult~"
+    },
+    "visibility": {
+      "total": 24,
+      "counts": {
+        "+": 21,
+        "-": 2,
+        "#": 1
+      },
+      "mismatches": [],
+      "badPrefix": []
+    }
+  },
+  "collapsedGeometry": {
+    "scene": {
+      "width": 1762,
+      "height": 589
+    },
+    "cardOverlaps": 0,
+    "labelOnWire": 0
+  },
+  "methodEndpointCheck": {
+    "methodPorts": {
+      "checked": 11,
+      "ok": 11,
+      "bad": [],
+      "missing": []
+    },
+    "wireEndpoints": {
+      "checked": 13,
+      "ok": 13,
+      "bad": []
+    },
+    "wireOnCard": [],
+    "wireOnAnyCard": [],
+    "sharedStarts": [],
+    "sharedEnds": [],
+    "wireOverlaps": [],
+    "wireTouches": [],
+    "wireProximities": [
+      "call.compactIfNeeded.tokenMeter.measure~call.compactRegion.compactSurfaceRegion@6",
+      "call.compactRegion.compactSurfaceRegion~call.compactIfNeeded.llm.resolveModelInfo@6"
+    ]
+  },
+  "router": {
+    "verticalOverlap": 2,
+    "horizontalOverlap": 2,
+    "verticalSeparate": 0,
+    "perpendicular": 1,
+    "verticalNear": 4,
+    "horizontalNear": 4,
+    "nearSeparate": 0
+  }
+}

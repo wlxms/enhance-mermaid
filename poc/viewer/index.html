@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ehm viewer · IR → UML</title>
+<link rel="stylesheet" href="./style.css">
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: #131417; }
+  #app { height: 100vh; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<!-- dagre bundle：唯一的外部依赖（62KB IIFE，暴露 window.DAGRE） -->
+<script src="../vendor/dagre.bundle.js"></script>
+
+<!--
+  IR 用 <script> 注入，而不是 fetch('/sample.ir.json')。
+  原因（写进 README）：
+    · file:// 下 fetch 受 CORS 限制，双击 index.html 会读不到 JSON
+    · MCP Apps 的宿主 iframe 也不保证允许 fetch；
+    · 统一入口是 "IR 作为参数传进 render()"，这里只是最朴素的宿主。
+-->
+<script src="./sample.ir.js"></script>
+
+<script src="./ehm-viewer.js"></script>
+<script>
+(function () {
+  'use strict'
+  var ir = window.__EHM_IR_FALLBACK__
+  var app = document.getElementById('app')
+
+  function boot(data) {
+    if (!data) {
+      app.textContent = '没有拿到 IR：请检查 poc/viewer/sample.ir.js 是否存在（viewer 独立调试页的静态夹具，内容取自 spec/sample.ir.json；日常验收请用 dist/ehm-demo.html）'
+      return
+    }
+    window.__viewer = window.EHMViewer.render(data, app, {
+      theme: 'dark',
+      methodsMode: 'expanded',
+      onJump: function (target) {
+        // 默认实现的等价物：不依赖任何宿主。
+        // 真实宿主（DSH 侧栏 / Webview）会用自己的实现替换它。
+        window.__lastJump = target
+        console.log('[ehm] onJump', target)
+      },
+    })
+    console.log('[ehm] rendered', data.entities.length, 'entities /', data.relations.length, 'relations')
+  }
+
+  boot(ir)
+})()
+</script>
+</body>
+</html>
